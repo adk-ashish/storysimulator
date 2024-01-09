@@ -1,0 +1,29 @@
+{
+    "pages": [
+        {
+            "Page Number": 1,
+            "Texts": [
+                "Euta ramri nurse hospital ma.",
+                "Uh sarai ramri xa."
+            ],
+            "Action Texts": {
+                "Hi": 2,
+                "Ignore": 3
+            },
+            "Page Picture": "C://nurse.jpg",
+            "Format Number": 1
+        },
+        {
+            "Page Number": 2,
+            "Texts": [
+                "Nurse:\"Hello Hajur\""
+            ],
+            "Action Texts": {
+                "\"Fb id k ho\"": 4,
+                "\"nasodni\"": 5
+            },
+            "Page Picture": "C://nurselaisodeko.jpg",
+            "Format Number": 2
+        }
+    ]
+}
