@@ -1,8 +1,4 @@
-// Dart classes to represent the JSON structure
-
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
+// models/page.dart
 
 class Page {
   final int pageNumber;
@@ -28,18 +24,4 @@ class Page {
       formatNumber: json['Format Number'],
     );
   }
-}
-
-// Function to load and parse JSON
-Future<List<Page>> fetchPages(BuildContext context) async {
-  String jsonString = await DefaultAssetBundle.of(context)
-      .loadString('assets/male_story/nursestory.json'); // Replace with your JSON file path
-
-  final parsed = json.decode(jsonString);
-
-  List<Page> pages = List<Page>.from(parsed['pages'].map((page) {
-    return Page.fromJson(page);
-  }));
-
-  return pages;
 }
