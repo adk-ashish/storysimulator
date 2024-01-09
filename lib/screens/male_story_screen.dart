@@ -90,7 +90,6 @@ class _MaleStoryScreenState extends State<MaleStoryScreen> {
               ),
             ),
           );
-          }
         }
       },
     );
