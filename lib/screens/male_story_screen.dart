@@ -1,3 +1,6 @@
+import 'package:firstapp/uiformats/formatno1.dart';
+import 'package:firstapp/uiformats/formatno2.dart';
+import 'package:firstapp/uiformats/formatno3.dart';
 import 'package:flutter/material.dart';
 import 'package:firstapp/utils/json_loader.dart' as DataLoader;
 import 'package:firstapp/models/page.dart' as CustomPage;
@@ -9,6 +12,7 @@ class MaleStoryScreen extends StatefulWidget {
 
 class _MaleStoryScreenState extends State<MaleStoryScreen> {
   late Future<List<CustomPage.Page>> futurePages;
+  int currentPageIndex = 0;
 
   @override
   void initState() {
@@ -34,11 +38,11 @@ class _MaleStoryScreenState extends State<MaleStoryScreen> {
           return Center(child: Text('No data available'));
         } else {
           List<CustomPage.Page> pages = snapshot.data!;
-          CustomPage.Page currentPage = pages[0]; // Assuming the first page is displayed initially
 
           double width = MediaQuery.of(context).size.width;
           double height = MediaQuery.of(context).size.height;
 
+          CustomPage.Page currentPage = pages[currentPageIndex];
           return Scaffold(
             body: Center(
               child: Stack(
@@ -69,17 +73,11 @@ class _MaleStoryScreenState extends State<MaleStoryScreen> {
                         children: currentPage.actionTexts.keys.map((action) {
                           return ElevatedButton(
                             onPressed: () {
-                              int nextPageNumber =
-                              currentPage.actionTexts[action]!;
-                              if (nextPageNumber > 0 &&
-                                  nextPageNumber <= pages.length) {
-                                CustomPage.Page nextPage = pages[nextPageNumber - 1];
-                                Navigator.pushReplacement( // Use pushReplacement to avoid stacking screens
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MaleStoryScreen(),
-                                  ),
-                                );
+                              int nextPageNumber = currentPage.actionTexts[action]!;
+                              if (nextPageNumber > 0 && nextPageNumber <= pages.length) {
+                                setState(() {
+                                  currentPageIndex = nextPageNumber - 1;
+                                });
                               }
                             },
                             child: Text(action),
@@ -92,6 +90,7 @@ class _MaleStoryScreenState extends State<MaleStoryScreen> {
               ),
             ),
           );
+          }
         }
       },
     );
