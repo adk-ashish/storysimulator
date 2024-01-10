@@ -1,3 +1,4 @@
+import 'package:firstapp/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'male_story_screen.dart';
 import 'female_story_screen.dart';
@@ -21,7 +22,8 @@ class GenderSelectionScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MaleStoryScreen()),
+                  //MaterialPageRoute(builder: (context) => MaleStoryScreen()),
+                    MaterialPageRoute(builder: (context) => HomePage())
                 );
                 // Handle Male selection
                 // Navigate to Male Story

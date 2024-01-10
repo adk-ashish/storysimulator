@@ -56,17 +56,17 @@ class _MaleStoryScreenState extends State<MaleStoryScreen> {
                   Positioned(
                     left: width * 0.1,
                     right: width * 0.1,
-                    bottom: height * 0.85,
+                    bottom: height * 0.8,
                     child: Text(
                       currentPage.texts.join('\n'),
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontSize: 24,backgroundColor: Colors.blueAccent),
                       textAlign: TextAlign.center,
                     ),
                   ),
                   Positioned(
                     bottom: 0.1 * height,
                     child: Container(
-                      color: Colors.amber,
+                      // color: Colors.amber,
                       width: width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
