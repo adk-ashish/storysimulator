@@ -5,6 +5,8 @@ import 'package:firstapp/screens/stories.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
+  final String selectedGender;
+  HomePage({required this.selectedGender});
   @override
   State<HomePage> createState() => _HomePageState();
 }

@@ -2,7 +2,37 @@ import 'package:firstapp/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'male_story_screen.dart';
 import 'female_story_screen.dart';
-class GenderSelectionScreen extends StatelessWidget {
+import 'package:shared_preferences/shared_preferences.dart';
+class GenderSelectionScreen extends StatefulWidget {
+  @override
+  State<GenderSelectionScreen> createState() => _GenderSelectionScreenState();
+}
+
+class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _loadGender();
+  }
+  _loadGender() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? gender = prefs.getString('gender');
+    if (gender != null) {
+      _navigateToHomePage(gender); //push gender
+    }
+  }
+  _saveGender(String gender) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('gender', gender);
+  }
+  _navigateToHomePage(String gender) {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(selectedGender: gender),
+      )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,11 +50,9 @@ class GenderSelectionScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  //MaterialPageRoute(builder: (context) => MaleStoryScreen()),
-                    MaterialPageRoute(builder: (context) => HomePage())
-                );
+                String selectedGender = 'male';
+                _saveGender(selectedGender);
+                _navigateToHomePage(selectedGender);
                 // Handle Male selection
                 // Navigate to Male Story
               },
@@ -33,10 +61,13 @@ class GenderSelectionScreen extends StatelessWidget {
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => FemaleStoryScreen()),
-                );
+                String selectedGender = 'female';
+                _saveGender(selectedGender);
+                _navigateToHomePage(selectedGender);
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => FemaleStoryScreen()),
+                // );
                 // Handle Female selection
                 // Navigate to Female Story
               },

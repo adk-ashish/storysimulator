@@ -6,7 +6,12 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Text("This is settings page"),
+      body: Column(
+        children: [
+          Text("This is settings page"),
+          Text("hi"),
+        ],
+      ),
     );
   }
 }
