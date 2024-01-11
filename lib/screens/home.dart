@@ -1,8 +1,10 @@
 import 'package:firstapp/screens/homebody.dart';
+import 'package:firstapp/screens/homefemalebody.dart';
 import 'package:firstapp/screens/male_story_screen.dart';
 import 'package:firstapp/screens/settings.dart';
 import 'package:firstapp/screens/stories.dart';
 import 'package:flutter/material.dart';
+import 'femalestories.dart';
 
 class HomePage extends StatefulWidget {
   final String selectedGender;
@@ -13,15 +15,32 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedPage = 0;
-
-  final _pageOptions = [
-    HomeBody(),
-    StoriesPage(),
-    Settings()
-  ];
+  late List<Widget> _pageOptions;
+  @override
+  void initState() {
+    super.initState();
+    _setPageOptions();
+  }
+  void _setPageOptions() {
+    if (widget.selectedGender == 'male') {
+      _pageOptions = [
+        HomeBody(),
+        StoriesPage(),
+        Settings()
+      ];
+    }
+    else {
+      _pageOptions = [
+        HomeFemaleBody(),
+        StoriesFemalePage(),
+        Settings()
+      ];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Game Home'),
